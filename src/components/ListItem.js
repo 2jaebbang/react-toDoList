@@ -44,26 +44,41 @@ const CheckIcon = styled.div`
         font-size: 32px;
     }
     
-    ${props => props.done && 
+    ${props => props.checked &&
         css`
             color: #7de87d;
+        `}
+
+    ${props => props.checked!==true &&
+        css`
+            color: #000000;
         `}
 `;
 
 const Text = styled.div`
     font-size: 24px;
-    ${props=> props.done &&
+    ${props=> props.checked &&
     css`
         color: #98cd98;
+        text-decoration: line-through;
     `}
+
+    ${props=> props.checked!==true &&
+        css`
+            color: #000000;
+            text-decoration: none;
+        `}
 `;
 
-function ListItem({id, done, text}){
+
+function ListItem({todo, onRemove, onCheck}){
+    const {id, text, checked} = todo;
+
     return(
         <ListItemBlock>
-            <CheckIcon done={done}>{<MdDone></MdDone>}</CheckIcon>
-            <Text done={done}>{text}</Text>
-            <Remove>
+            <CheckIcon checked={checked} onClick={()=> onCheck(id)} >{<MdDone></MdDone>}</CheckIcon>
+            <Text checked={checked}>{text}</Text>
+            <Remove onClick={()=> onRemove(id)}>
                 <FiDelete></FiDelete>
             </Remove>
         </ListItemBlock>

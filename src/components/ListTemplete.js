@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ListItem from './ListItem';
-import ListCreate from "./ListCreate";
+
 
 
 const ListBlock = styled.div`
     padding: 20px 36px;
-    padding-bottom: 48px;
-
+    padding-bottom: 0px;
 `;
 
-function List(){
+function List({todos, onRemove, onCheck}){
     
     return (
         <ListBlock>
-            <ListItem text="프로젝트 생성하기" done={true}></ListItem>
-            <ListItem text="프로젝트 추가하기" done={true}></ListItem>
-            <ListItem text="프로젝트 삭제하기" done={false}></ListItem>
-            <ListItem text="프로젝트 살펴보기" done={false}></ListItem>
-            <ListCreate></ListCreate>
+            {todos.map((todo)=>(
+                <ListItem todo = {todo} key={todo.id} onRemove={onRemove} onCheck={onCheck}></ListItem>
+            ))}
         </ListBlock>
     );
 }

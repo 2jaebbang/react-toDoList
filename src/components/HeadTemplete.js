@@ -28,13 +28,11 @@ const HeadBlock = styled.div`
 `;
 
 
-function Head(){
+function Head(props){
     return (
         <HeadBlock>
           
-            <div className="todoLeft">2개 남음</div>
-            <h2>2021년 11월 1일</h2>
-            <div className="day">월요일</div>
+            <h3>{props.todoLeft}개 남음</h3>
             <hr></hr>
         </HeadBlock>
     );

@@ -10,7 +10,7 @@ const MainBlock = styled.div`
     border-radius: 20px;
 
     margin: auto;
-    margin-top: 100px;
+    margin-top: 30px;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
