@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import { Component } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import Main from './components/MainTemplete';
+import Head from './components/HeadTemplete';
+import List from './components/ListTemplete';
 
-function App() {
-  return (
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #e9ecef;
+  }
+`;
+
+class ToDo extends Component {
+  render() {
+    return (
+        <div>
+          <ul>
+            <li>test1</li>
+            <li>test2</li>
+          </ul>
+        </div>
+    );
+  }
+}
+
+class App extends Component{
+  render(){
+return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GlobalStyle></GlobalStyle>
+      <Main>   {/* 투두리스트 전체 블록 css */}
+        <h1 style={{textAlign: "center"}}>미리 알림</h1>
+        <Head></Head>
+        <List></List>
+      </Main> 
     </div>
   );
+  }
 }
+
+
 
 export default App;
