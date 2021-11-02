@@ -3,15 +3,14 @@ import styled from 'styled-components';
 
 const MainBlock = styled.div`
     width: 512px;
-    height: 768px;
+    height: 720px;
 
     position: relative;
     background: white;
     border-radius: 20px;
 
     margin: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
 `;

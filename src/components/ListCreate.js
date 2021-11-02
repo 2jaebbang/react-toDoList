@@ -11,19 +11,16 @@ const ListItemBlock = styled.div`
 `;
 
 const CreateIcon = styled.div`
-    width: 30px;
-    height: 30px;
-    padding-left: 36px;
-    font-size: 24px;
+    width: 39px;
+    height: 39px;
+    font-size: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
+    margin-right: 15px;
     cursor: pointer;
-    &: hover {
-        width: 32px;
-        height: 32px;
-        font-size: 32px;
+    &:hover {
+        color: #ff3333;
     }
     
     ${props => props.done && 
@@ -41,8 +38,8 @@ const InsertForm = styled.form`
 `;
 
 const Input = styled.input`
-    padding: 12px;
-    border-radius: 4px;
+    padding: 10px;
+    border-radius: 8px;
 `;
 
 function ListCreate(props){
@@ -74,7 +71,7 @@ function ListCreate(props){
     }
 
     return (
-        <ListItemBlock>
+        <ListItemBlock style={{padding: "15px 48px"}}>
             <CreateIcon onClick={changeClick}><MdAdd></MdAdd></CreateIcon>
             <InsertForm clicked={isClick} >         
                 <Input placeholder="입력할 것" type="text" value={content} onChange={changeInput} onKeyPress={keyPress} autoFocus></Input>

@@ -1,6 +1,9 @@
 import './App.css';
 import { Component, useState, useRef } from 'react';
 import { createGlobalStyle } from 'styled-components';
+import moment from 'moment';
+import 'moment/locale/ko';
+
 import Main from './components/MainTemplete';
 import Head from './components/HeadTemplete';
 import List from './components/ListTemplete';
@@ -8,7 +11,7 @@ import ListCreate from "./components/ListCreate";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background: #425364;
+    background: #adc2eb;
   }
 `;
 
@@ -16,12 +19,18 @@ const GlobalStyle = createGlobalStyle`
 function App(){
   const[todos, setTodos] = useState([]);
   const nextId = useRef(0);
-  const todoLeft = todos.length;
+  
+  const todoLeft = todos.filter((todo)=> {
+    return todo.checked === false;
+  }).length;
+
   const todoSubmit = (text) => {
     const todo = {
       id: nextId.current,
       text,
       checked: false,
+      startTime: moment().format('hh시 mm분 시작'),
+      endTime: "",
     };
     setTodos(todos.concat(todo));
     nextId.current ++;
@@ -34,7 +43,7 @@ function App(){
   const todoCheck = (id) => {
     setTodos(
       todos.map((todo) => {
-        return todo.id === id ? {...todo, checked: !todo.checked} : todo;
+        return todo.id === id ? {...todo, checked: !todo.checked, endTime: moment().format('hh시 mm분 종료')} : todo;
       })
     );
   };

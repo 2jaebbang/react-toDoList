@@ -5,7 +5,7 @@ import ListItem from './ListItem';
 
 
 const ListBlock = styled.div`
-    padding: 20px 36px;
+    padding: 10px 55px;
     padding-bottom: 0px;
 `;
 

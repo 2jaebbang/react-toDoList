@@ -1,16 +1,17 @@
 import React from "react";
 import styled, {css} from "styled-components";
+
 import {MdDone} from 'react-icons/md';
-import {FiDelete} from 'react-icons/fi';
+import {BiTrashAlt} from 'react-icons/bi';
 
 const Remove = styled.div`
-    display:flex;
-    align-items: center;
-    justify-content: center;
+    display:inline-block;
+    position: relative;
+    bottom:-2px;
     font-size: 24px;
     cursor: pointer;
     &:hover {
-        color: #ff6b6b;
+        color: #ff3333;
     }
     display:none;
 `;
@@ -18,7 +19,6 @@ const Remove = styled.div`
 
 const ListItemBlock = styled.div`
     display:flex;
-    align-items: center;
     padding-top: 12px;
     padding-bottom: 12px;
     &:hover {
@@ -29,19 +29,20 @@ const ListItemBlock = styled.div`
 `;
 
 const CheckIcon = styled.div`
-    width: 24px;
-    height: 24px;
-
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 26px;
+    height: 26px;
+    line-height: 35px;
+    font-size: 26px;
+    display:inline-block;
+    position: relative;
+    bottom:-2px;
     margin-right: 20px;
     cursor: pointer;
     &: hover {
-        width: 32px;
-        height: 32px;
-        font-size: 32px;
+        width: 26px;
+        height: 26px;
+        font-size: 26px;
+        color: #7de87d;
     }
     
     ${props => props.checked &&
@@ -56,7 +57,10 @@ const CheckIcon = styled.div`
 `;
 
 const Text = styled.div`
-    font-size: 24px;
+    display:inline-block;
+    line-height: 35px;
+    font-size: 23px;
+    font-weight: 500;
     ${props=> props.checked &&
     css`
         color: #98cd98;
@@ -70,17 +74,40 @@ const Text = styled.div`
         `}
 `;
 
+const Time = styled.div`
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 35px;
+    ${props => props.checked &&
+    css`
+        color: #98cd98;
+    `}
+
+    ${props => props.checked !== true &&
+    css`
+        color: #000000;
+    `}
+`;
+
 
 function ListItem({todo, onRemove, onCheck}){
-    const {id, text, checked} = todo;
+    const {id, text, checked, startTime, endTime} = todo;
 
+    const printTime = () => {
+        if(checked){
+            return endTime;
+        } else return(<div style={{paddingLeft:"18px"}, {color:"#ff3333"}}>시작 예정</div>);
+    }
     return(
         <ListItemBlock>
-            <CheckIcon checked={checked} onClick={()=> onCheck(id)} >{<MdDone></MdDone>}</CheckIcon>
-            <Text checked={checked}>{text}</Text>
-            <Remove onClick={()=> onRemove(id)}>
-                <FiDelete></FiDelete>
-            </Remove>
+            <div style={{width:"300px"}}>
+                <CheckIcon checked={checked} onClick={() => onCheck(id)} >{<MdDone></MdDone>}</CheckIcon>
+                <Text checked={checked}>{text}</Text>
+                <Remove onClick={() => onRemove(id)}>
+                    <BiTrashAlt style={{ margin: "0px 0px 0px 15px"}}></BiTrashAlt>
+                </Remove>
+            </div>
+            <Time checked={checked}>{printTime()}</Time>
         </ListItemBlock>
     );
 }
